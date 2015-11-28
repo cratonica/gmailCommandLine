@@ -76,14 +76,11 @@ class Mail(object):
             sign]gmail[here a dot]com.")
 
     def send(self):
-        try:
-            server = smtplib.SMTP('smtp.gmail.com:587')
-            server.starttls()
-            server.login(self.fromaddr, self.passwd)
-            server.sendmail(
-                self.fromaddr, [self.toaddrs, self.cc, self.bcc],
-                self.email.as_string())
-            server.quit()
-            print "Successfully sent email!"
-        except smtplib.SMTPException:
-            print "ERROR"
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.starttls()
+        server.login(self.fromaddr, self.passwd)
+        server.sendmail(
+            self.fromaddr, [self.toaddrs, self.cc, self.bcc],
+            self.email.as_string())
+        server.quit()
+        print "Successfully sent email!"
